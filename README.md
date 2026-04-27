@@ -1,64 +1,47 @@
 # Corretor de postura para violonistas baseado em computer vision
-Sistema baseado em visão computacional e aprendizagem de máquina para avaliação de postura e posicionamento de violonistas em tempo real.
 
-Este projeto utiliza matplotlib para a criação e treinamento do modelo classificador, YOLO para detecção e métrica do violão, MediaPipe para a detecção e estimativa da postura e posicionamento de mãos e dedos do violonista e OpenCV para entrada de vídeo via câmera.
+Sistema de visão computacional e machine learning para avaliação de postura e posicionamento de violonistas em tempo real.
 
-O sistema analisa:
-- Postura geral
-- Posicionamento das mãos
-- Relação com o violão
+O sistema combina detecção de pose corporal, rastreamento de mãos e detecção do violão para extrair features estruturais e avaliar a qualidade da execução instrumental.
 
 ## Tecnologias
 
-- MediaPipe Pose → detecção de landmarks do corpo
+- MediaPipe Pose → detecção de pose corporal
 - MediaPipe Hands → detecção de mãos e dedos
 - YOLO → detecção do violão
-- OpenCV → captura e exibição de vídeo
-- Scikit-learn → classificação de postura
-- Pandas para registro de features e manipulação das bases de dados
+- OpenCV → captura de vídeo em tempo real
+- Scikit-learn → modelo de classificação
+- Pandas → organização do dataset
 
-##Arquitetura da construção do classificador
+## Treinamento do modelo
 
-A criação do classificador segue o seguinte pipeline:
+1. Coleta de imagens/vídeos de violonistas
+2. Extração de landmarks com MediaPipe Pose e Hands
+3. Detecção do violão com YOLO
+4. Extração de features (ângulos, distâncias, posições relativas)
+5. Construção do dataset estruturado (CSV com Pandas)
+6. Treinamento do modelo com Scikit-learn
 
-- Banco de imagens coletadas para uso no treinamento
-- Extração dos dados da postura com MediaPipePose
-- Extração dos dados do posicionamento das mãos com MediaPipeHands
-- Extração dos dados de métrica do violão com YOLO
-- Criação da base de dados contendo as features extraídas, utilizando Pandas
-- Criação e treinamento do modelo utilizando Scikit-Learn
+## Sistema em tempo real
 
-##Arquitetura do sistema principal
-
-## Arquitetura
-
-O sistema segue o seguinte pipeline:
-
-Input (vídeo/imagem)
+Input (câmera)
     ↓
-Detecção de pose (MediaPipe)
+MediaPipe Pose
     ↓
-Detecção de mãos (MediaPipe)
+MediaPipe Hands
     ↓
-Detecção de violão (YOLO)
+YOLO (violão)
     ↓
 Extração de features
     ↓
-Classificação (ML)
+Modelo de ML
     ↓
-Feedback ao usuário
+Feedback de postura
 
-##Fluxo
+## Features
 
-## Fluxo
-
-1. Capturar frame da câmera
-2. Processar pose com MediaPipe
-3. Detectar mãos
-4. Detectar violão com YOLO
-5. Extrair features:
-   - ângulos
-   - distâncias
-   - posições relativas
-6. Enviar para o modelo de ML
-7. Exibir resultado na tela
+- ângulos articulares (cotovelo, punho, ombro)
+- posição relativa das mãos
+- posição do violão
+- distâncias entre mãos e instrumento
+- alinhamento corporal

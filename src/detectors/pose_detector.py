@@ -1,14 +1,15 @@
 import cv2
 import mediapipe as mp
-import matplotlib.pyplot as plt
 
 class Pose_Detector:
-    def __init__(self, img):
+    def __init__(self):
+        self.mp_pose = mp.solutions.pose
+        self.mp_drawing = mp.solutions.drawing_utils
+
+    def process(self, img):
+        if img is None:
+            raise ValueError("Imagem inválida")
+        
         self.img = img
         self.img_width = img.shape[1]
         self.img_height = img.shape[0]
-
-        self.fig, self.ax = plt.subplots(figsize = (10, 10))
-        self.ax.axis("off")
-        self.ax.imshow(img)
-        plt.show()

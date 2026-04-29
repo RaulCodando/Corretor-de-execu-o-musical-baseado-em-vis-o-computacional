@@ -4,6 +4,21 @@ Sistema de visão computacional e machine learning para avaliação de postura e
 
 O sistema combina detecção de pose corporal, rastreamento de mãos e detecção do violão para extrair features estruturais e avaliar a qualidade da execução instrumental.
 
+## Requisitos
+
+- Python 3.11.x
+
+### Dependências principais
+
+```bash
+mediapipe==0.10.9
+opencv-python==4.13.0.92
+numpy==2.4.4
+pandas==3.0.2
+scikit-learn==1.8.0
+matplotlib==3.10.9
+```
+
 ## Tecnologias
 
 - MediaPipe Pose → detecção de pose corporal
